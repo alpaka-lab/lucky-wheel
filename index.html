@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <title>Lucky Wheel - Random Name Picker & Spin Wheel</title>
+  <meta name="description"
+    content="A beautiful, customizable, and free random name picker wheel. Perfect for raffles, decision making, and games. Features realistic physics and sound effects.">
+  <meta name="keywords"
+    content="spin wheel, random picker, lucky wheel, name picker, raffle wheel, decision maker, randomizer">
+  <meta name="author" content="Lucky Wheel Team">
+  <meta name="theme-color" content="#ff00de">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://your-domain.com/">
+  <meta property="og:title" content="Lucky Wheel - Random Name Picker">
+  <meta property="og:description"
+    content="Spin the wheel to decide! A premium, customizable random picker with sound effects and realistic physics.">
+  <meta property="og:image" content="https://your-domain.com/og-image.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://your-domain.com/">
+  <meta property="twitter:title" content="Lucky Wheel - Random Name Picker">
+  <meta property="twitter:description"
+    content="Spin the wheel to decide! A premium, customizable random picker with sound effects and realistic physics.">
+  <meta property="twitter:image" content="https://your-domain.com/og-image.png">
+</head>
+
+<body>
+  <div id="app">
+    <button id="langToggle" class="glass-btn small">TH / EN</button>
+    <div class="top-left-controls">
+      <button id="shuffleBtn" class="glass-btn small icon-btn" data-i18n="shuffleBtn">🔀 Shuffle</button>
+      <button id="settingsBtn" class="glass-btn small icon-btn" data-i18n="settingsBtn">⚙️ Settings</button>
+    </div>
+    <div class="glass-container">
+      <div class="header-row">
+        <h1 id="mainTitle" class="title" data-i18n="title">Lucky Wheel</h1>
+      </div>
+
+      <div class="main-layout">
+        <div class="wheel-section">
+          <div class="wheel-container">
+            <canvas id="wheelCanvas" width="800" height="800"></canvas>
+            <button id="centerSpinBtn" class="center-spin-btn" data-i18n="centerSpinBtn">SPIN</button>
+            <div class="arrow"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settingsModal" class="modal-overlay hidden">
+    <div class="glass-modal settings-modal">
+      <h2 class="modal-title" data-i18n="settingsTitle">Settings</h2>
+
+      <div class="settings-content">
+        <!-- General Settings -->
+        <div class="settings-group">
+          <div class="setting-item">
+            <label data-i18n="labelTitle">Wheel Name</label>
+            <input type="text" id="settingTitleInput" class="glass-input">
+          </div>
+
+          <div class="setting-item">
+            <label><span data-i18n="labelDuration">Spin Duration</span>: <span id="durationValue">5</span>s</label>
+            <input type="range" id="settingDurationInput" min="1" max="15" step="1" value="5">
+          </div>
+
+          <div class="setting-item">
+            <label><span data-i18n="labelSpeed">Spin Speed</span>: <span id="speedValue">90%</span></label>
+            <input type="range" id="settingSpeedInput" min="0.1" max="1.0" step="0.1" value="0.9">
+          </div>
+
+          <div class="setting-item">
+            <label data-i18n="labelTheme">Background Theme</label>
+            <div class="theme-grid" id="themeGrid">
+              <!-- JS will inject buttons here -->
+            </div>
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Participants Section -->
+        <div class="participants-group">
+          <h3 data-i18n="participants">Participants</h3>
+          <div class="input-group">
+            <input type="text" id="nameInput" placeholder="Add name..." data-i18n-placeholder="addPlaceholder" />
+            <button id="addBtn" class="glass-btn" data-i18n="addBtn">Add</button>
+          </div>
+          <ul id="participantList" class="participant-list">
+            <!-- Items injected here -->
+          </ul>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button id="saveSettingsBtn" class="glass-btn primary" data-i18n="saveBtn">Save</button>
+        <button id="closeSettingsBtn" class="glass-btn secondary">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="winnerModal" class="modal-overlay hidden">
+    <div class="glass-modal">
+      <h2 class="modal-title" data-i18n="modalTitle">🎉 We have a Winner! 🎉</h2>
+      <div id="winnerName" class="winner-name"></div>
+
+      <div id="confirmationSection" class="confirmation-section hidden">
+        <p data-i18n="confirmationText">Remove this person from the list?</p>
+        <div class="modal-actions">
+          <button id="keepBtn" class="glass-btn secondary" data-i18n="keepBtn">No, Keep</button>
+          <button id="removeBtn" class="glass-btn primary" data-i18n="removeBtn">Yes, Remove</button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
